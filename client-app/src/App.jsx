@@ -1,7 +1,7 @@
 
 import { Route, Routes } from 'react-router-dom'
 import './App.css'
-import { Layout } from './components/Layout'
+import { MainLayout } from './components/MainLayout'
 import { Home } from './components/Home'
 import { NewNote } from './components/NewNote'
 
@@ -9,13 +9,16 @@ function App() {
 
 
   return (
-    <Layout >
+ 
       <Routes>
-        <Route path='/' element={<Home />}/>
-        <Route path='/new' element={<NewNote />}/>
+        <Route element={<MainLayout />}>
+
+          <Route path='/' element={<Home />}/>
+          <Route path='/new' element={<NewNote />}/>
+        </Route>
  
       </Routes>
-    </Layout>
+
   )
 }
 
