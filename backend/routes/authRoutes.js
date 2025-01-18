@@ -22,7 +22,7 @@ authRouter.post("/sign-up", async (req, res) => {
   // get name, email and password from body
   const { name, email, password } = user.data;
 
-  const salt = bcrypt.genSalt(10);
+  const salt = await bcrypt.genSalt(10);
   const hashPassword = bcrypt.hashSync(password, salt);
 
   try {
@@ -33,7 +33,10 @@ authRouter.post("/sign-up", async (req, res) => {
     });
     return res
       .status(201)
-      .json({ message: "User registration successfull", user: newUser });
+      .json({
+        message: "User registration successfull",
+        user: { name: name, email: email },
+      });
   } catch (err) {
     return res
       .status(500)
